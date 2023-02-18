@@ -2,6 +2,8 @@ import { Provider } from "react-redux";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import "./App.css";
 import Body from "./components/Body";
+import Demo from "./components/Demo";
+import Dummy from "./components/Dummy";
 import Header from "./components/Header.js";
 import MainContainer from "./components/MainContainer";
 import WatchVideo from "./components/WatchVideo";
@@ -9,28 +11,37 @@ import store from "./utils/store";
 
 const appRouter = createBrowserRouter([
   {
-    path:"/",
-    element: <Body/>,
-    children:[
+    path: "/",
+    element: <Body />,
+    children: [
       {
-        path:"/",
-        element:<MainContainer/>
+        path: "/",
+        element: <MainContainer />,
       },
 
       {
-        path:"watch",
-        element:<WatchVideo/>
-      }
-    ]
-  }
-])
+        path: "watch",
+        element: <WatchVideo />,
+      },
+      {
+        path: "demo",
+        element: (
+          <>
+            <Demo />
+            <Dummy />
+          </>
+        ),
+      },
+    ],
+  },
+]);
 function App() {
   return (
     <Provider store={store}>
-    <div>
-    <Header />
-    <RouterProvider router={appRouter}/>
-  {/**
+      <div>
+        <Header />
+        <RouterProvider router={appRouter} />
+        {/**
 
     Head
     Body
@@ -41,8 +52,7 @@ function App() {
         Video Card
           Video COntainer
 **/}
-     
-    </div>
+      </div>
     </Provider>
   );
 }
